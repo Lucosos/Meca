@@ -1,27 +1,37 @@
-public class Quicksort_normal implements Ordenacion {
+public class Quicksort_mejorado implements Ordenacion {
 
     public void ordenar (int[] arreglo) {
-	quicksort_normal(arreglo,0,arreglo.length - 1);
+	quicksort_mejorado(arreglo,0,arreglo.length - 1);
     }
     
 
-    public void quicksort_normal (int[] arreglo, int inicio,int fin) {
+    public void quicksort_mejorado (int[] arreglo, int inicio,int fin) {
 
-	if (inicio < fin ) { //condicion que aun no se , ){
+	if ( fin - inicio > 9 ) { //condicion que aun no se , ){
 	    int p = particionar(arreglo,inicio,fin);
 	    quicksort_normal(arreglo,inicio,p);
 	    quicksort_normal(arreglo,p+1,fin);
 
+	}
+	else{//si a de tamaño 10 o menor el arreglo se ordnara esa seccion con un insertionsort
+		insertionsort(arreglo,inicio,fin);			
 	}
 
     }
 
     public int particionar (int[] arreglo, int inicio, int fin) {
 
-	int izq,der,piv,aux;
+	int izq,der,med,piv,aux;
 	izq = inicio;
 	der = fin;
-	piv = fin;
+	med = (fin + inicio)/2;
+	int median = mediana(arreglo[inicio],arreglo[med],arreglo[fin]);
+	piv = fin;	
+	if (median == arreglo[inicio])
+		piv = inicio;
+	else if (median == arreglo[med])
+		piv = med;  
+	
 	while (izq < der) {// si es = pasarlo nomas
 	    while (arreglo[izq] <= arreglo[piv]  && izq < fin ) {//!!
  //un if repetido varias veces es equivalente a un while , queremos.... chamullo
@@ -95,4 +105,3 @@ public class Quicksort_normal implements Ordenacion {
 
 
 }
-

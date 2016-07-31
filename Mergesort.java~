@@ -19,19 +19,13 @@ public class Mergesort implements Ordenacion {
     }
 
     public void merge(int[] arreglo, int inic, int medio,  int fin) {
-	int largo =  fin - inic + 1;
+	int largo = inic - fin + 1;
 	int izq = inic;
 	int der = medio + 1;
 	int i = inic;
-//	int[] aux= arreglo; ////si no funciona o para un improvment
+	int[] aux= arreglo; ////si no funciona o para un improvment
                              // copiar solo la seccion que se ordenara
-//	System.arrayCopy(arreglo,0,aux,0,arreglo.length);
-	
-	int[] aux = new int[arreglo.length];
-	for (int k = 0; i < aux.length ; k++){
-		aux[k]=arreglo[k];
-	}
-
+	System.arrayCopy(arreglo,0,aux,0,arreglo.length);
 	while ( not(izq == medio && der == fin) ) {
 	    if (izq == medio + 1) {
 		for (int j = der; j <= fin; j++) {
